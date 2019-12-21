@@ -14,9 +14,7 @@ function addArrayProperty(fileName, propertyName, element) {
 }
 exports.addArrayProperty = addArrayProperty;
 function setScript(pkg, name, script) {
-    pkg
-        .setScript(name, script)
-        .save();
+    pkg.setScript(name, script).save();
 }
 exports.setScript = setScript;
 function setScripts(pkg, scripts) {

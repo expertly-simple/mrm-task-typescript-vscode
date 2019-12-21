@@ -1,1 +1,1 @@
-{"version":3,"file":"baseVsCodeExtensions.js","sourceRoot":"","sources":["../../shared/baseVsCodeExtensions.ts"],"names":[],"mappings":";;AAAa,QAAA,oBAAoB,GAAG;IAChC,uBAAuB;IACvB,sCAAsC;IACtC,iBAAiB;IACjB,wBAAwB;IACxB,yBAAyB;IACzB,6BAA6B;IAC7B,2CAA2C;IAC3C,2BAA2B;IAC3B,yBAAyB;CAC3B,CAAA"}
+{"version":3,"file":"baseVsCodeExtensions.js","sourceRoot":"","sources":["../../shared/baseVsCodeExtensions.ts"],"names":[],"mappings":";;AAAa,QAAA,oBAAoB,GAAG;IAClC,uBAAuB;IACvB,sCAAsC;IACtC,iBAAiB;IACjB,wBAAwB;IACxB,yBAAyB;IACzB,6BAA6B;IAC7B,2CAA2C;IAC3C,2BAA2B;IAC3B,yBAAyB;CAC1B,CAAA"}

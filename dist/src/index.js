@@ -19,7 +19,8 @@ function task() {
 }
 function configureTypeScript() {
     mrm_core_1.install(['typescript', '@types/node']);
-    mrm_core_1.json('tsconfig.json').merge({
+    mrm_core_1.json('tsconfig.json')
+        .merge({
         compilerOptions: {
             target: 'es2015',
             module: 'commonjs',
@@ -28,8 +29,10 @@ function configureTypeScript() {
             typeRoots: ['node_modules/@types'],
             resolveJsonModule: true,
         },
-    });
-    mrm_core_1.json('tsconfig.src.json').merge({
+    })
+        .save();
+    mrm_core_1.json('tsconfig.src.json')
+        .merge({
         extends: './tsconfig.json',
         compilerOptions: {
             outDir: './dist',
@@ -47,16 +50,17 @@ function configureTypeScript() {
             sourceMap: true,
         },
         include: ['./src'],
-    });
+    })
+        .save();
     mrm_core_1.makeDirs(['src', 'dist']);
-    if (!mrm_core_1.lines('./src/index.ts').exists) {
-        mrm_core_1.lines('./src/index.ts', [
+    if (!mrm_core_1.lines('src/index.ts').exists) {
+        mrm_core_1.lines('src/index.ts', [
             "export const message = 'Hello, world!'",
             'console.log(message)',
             "// Execute 'npm run build' to build your code",
             "// Execute 'npm start' to build and run your code",
             "// Execute 'npm test' to run your tests",
-        ]);
+        ]).save();
     }
 }
 function configureJasmineAndNyc() {
@@ -76,13 +80,16 @@ function configureJasmineAndNyc() {
         'test:ci': 'ts-node ./node_modules/jasmine-xml-reporter/bin/jasmine.js --config=./jasmine.json --junitreport --output=test_results/',
         'test:nyc': 'nyc ts-node node_modules/jasmine/bin/jasmine --config=./jasmine.json --cache=false',
     });
-    mrm_core_1.json('jasmine.json').merge({
+    mrm_core_1.json('jasmine.json')
+        .merge({
         spec_dir: 'tests',
         spec_files: ['**/*[sS]pec.ts'],
         stopSpecOnExpectationFailure: false,
         random: true,
-    });
-    mrm_core_1.json('.nycrc').merge({
+    })
+        .save();
+    mrm_core_1.json('.nycrc')
+        .merge({
         extends: '@istanbuljs/nyc-config-typescript',
         all: true,
         'check-coverage': true,
@@ -93,9 +100,11 @@ function configureJasmineAndNyc() {
         lines: 90,
         functions: 90,
         statements: 90,
-    });
+    })
+        .save();
     mrm_core_1.makeDirs('tests');
-    mrm_core_1.json('./tests/tsconfig.spec.json').merge({
+    mrm_core_1.json('tests/tsconfig.spec.json')
+        .merge({
         extends: '../tsconfig.json',
         compilerOptions: {
             declaration: false,
@@ -104,9 +113,10 @@ function configureJasmineAndNyc() {
             noImplicitAny: false,
             types: ['node', 'jasmine'],
         },
-    });
-    if (!mrm_core_1.lines('./tests/index.spec.ts').exists) {
-        mrm_core_1.lines('./tests/index.spec.ts', [
+    })
+        .save();
+    if (!mrm_core_1.lines('tests/index.spec.ts').exists) {
+        mrm_core_1.lines('tests/index.spec.ts', [
             "import { message } from '../src/index'",
             '',
             "describe('Index', () => {",
@@ -114,7 +124,7 @@ function configureJasmineAndNyc() {
             "    expect('Hello, world!').toEqual(message)",
             '  })',
             '})',
-        ]);
+        ]).save();
     }
 }
 function configureNpmScripts() {
@@ -135,7 +145,8 @@ function configureNpmScripts() {
     });
 }
 function configureBaseTsLint() {
-    mrm_core_1.json('tslint.json').merge({
+    mrm_core_1.json('tslint.json')
+        .merge({
         rules: {
             'array-type': false,
             'arrow-parens': false,
@@ -165,7 +176,8 @@ function configureBaseTsLint() {
             'ordered-imports': false,
             'trailing-comma': false,
         },
-    });
+    })
+        .save();
     commonTasks_1.configureTsLint();
 }
 function configureVsCodeForTypeScript() {
