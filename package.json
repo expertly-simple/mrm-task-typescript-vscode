@@ -1,0 +1,45 @@
+{
+  "name": "mrm-task-typescript-vscode",
+  "version": "1.0.0",
+  "description": "MRM task to configure VS Code and TypeScript projects with an optimized development experience",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "config": {
+    "mrmSharedUrl": "https://github.com/expertly-simple/mrm-shared.git"
+  },
+  "scripts": {
+    "pretest": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "shared:clean": "cross-conf-env rimraf shared && git rm -r --cached shared",
+    "shared:init": "cross-conf-env git submodule add $npm_package_config_mrmSharedUrl shared",
+    "postshared:init": "git submodule status shared",
+    "modules:init": "git submodule update --init --recursive",
+    "modules:update": "git submodule update --recursive --remote",
+    "build": "tsc -p tsconfig.src.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/expertly-simple/mrm-task-typescript-vscode.git"
+  },
+  "keywords": [
+    "mrm",
+    "mrm-task",
+    "angular",
+    "vscode"
+  ],
+  "author": "Doguhan Uluca",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/expertly-simple/mrm-task-typescript-vscode/issues"
+  },
+  "homepage": "https://github.com/expertly-simple/mrm-task-typescript-vscode#readme",
+  "dependencies": {
+    "mrm-core": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "cross-conf-env": "^1.1.2",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.3"
+  }
+}
