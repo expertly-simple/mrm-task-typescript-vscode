@@ -96,6 +96,7 @@ function configureJasmineAndNyc() {
   const pkg = packageJson()
 
   setScripts(pkg, {
+    'build:test': 'tsc -p tests/tsconfig.spec.json',
     pretest: 'npm run build && npm run build:test',
     test: 'ts-node node_modules/jasmine/bin/jasmine --config=./jasmine.json',
     'test:ci':
@@ -174,7 +175,6 @@ function configureNpmScripts() {
     start: 'env-cmd node dist/index.js',
     prebuild: 'rimraf dist',
     build: 'tsc -p tsconfig.src.json',
-    'build:test': 'tsc -p tests/tsconfig.spec.json',
     prepublishOnly: 'npm run test',
     prepare: 'npm run build',
   })
