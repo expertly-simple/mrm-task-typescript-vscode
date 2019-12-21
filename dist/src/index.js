@@ -49,8 +49,8 @@ function configureTypeScript() {
         include: ['./src'],
     });
     mrm_core_1.makeDirs(['src', 'dist']);
-    if (!mrm_core_1.lines('src/index.ts').exists) {
-        mrm_core_1.lines('src/index.ts', [
+    if (!mrm_core_1.lines('./src/index.ts').exists) {
+        mrm_core_1.lines('./src/index.ts', [
             "export const message = 'Hello, world!'",
             'console.log(message)',
             "// Execute 'npm run build' to build your code",
@@ -95,7 +95,7 @@ function configureJasmineAndNyc() {
         statements: 90,
     });
     mrm_core_1.makeDirs('tests');
-    mrm_core_1.json('tests/tsconfig.spec.json').merge({
+    mrm_core_1.json('./tests/tsconfig.spec.json').merge({
         extends: '../tsconfig.json',
         compilerOptions: {
             declaration: false,
@@ -105,8 +105,8 @@ function configureJasmineAndNyc() {
             types: ['node', 'jasmine'],
         },
     });
-    if (!mrm_core_1.lines('tests/index.spec.ts').exists) {
-        mrm_core_1.lines('tests/index.spec.ts', [
+    if (!mrm_core_1.lines('./tests/index.spec.ts').exists) {
+        mrm_core_1.lines('./tests/index.spec.ts', [
             "import { message } from '../src/index'",
             '',
             "describe('Index', () => {",
