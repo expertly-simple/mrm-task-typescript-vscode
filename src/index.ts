@@ -63,8 +63,8 @@ function configureTypeScript() {
 
   makeDirs(['src', 'dist'])
 
-  if (!lines('src/index.ts').exists) {
-    lines('src/index.ts', [
+  if (!lines('./src/index.ts').exists) {
+    lines('./src/index.ts', [
       "export const message = 'Hello, world!'",
       'console.log(message)',
       "// Execute 'npm run build' to build your code",
@@ -117,7 +117,7 @@ function configureJasmineAndNyc() {
   })
 
   makeDirs('tests')
-  json('tests/tsconfig.spec.json').merge({
+  json('./tests/tsconfig.spec.json').merge({
     extends: '../tsconfig.json',
     compilerOptions: {
       declaration: false,
@@ -128,8 +128,8 @@ function configureJasmineAndNyc() {
     },
   })
 
-  if (!lines('tests/index.spec.ts').exists) {
-    lines('tests/index.spec.ts', [
+  if (!lines('./tests/index.spec.ts').exists) {
+    lines('./tests/index.spec.ts', [
       "import { message } from '../src/index'",
       '',
       "describe('Index', () => {",
