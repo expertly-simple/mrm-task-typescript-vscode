@@ -11,7 +11,7 @@ import { install, json, lines, makeDirs, packageJson } from "mrm-core";
 import { BaseVsCodeSettings } from "../shared";
 import { setScripts } from "../shared/helpers";
 
-export function task() {
+function task() {
   configureCommonNpmPackages();
   configureNpmScripts();
   configureImportSort();
@@ -269,3 +269,4 @@ function configureVsCodeForTypeScript() {
 }
 
 task.description = "Configures VS Code for TypeScript projects";
+module.exports = task
