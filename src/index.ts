@@ -1,7 +1,7 @@
 import { install, json, lines, makeDirs, packageJson } from 'mrm-core'
 
-import { BaseVsCodeSettings } from '../shared'
 import { BaseVsCodeExtensions } from '../shared/baseVsCodeExtensions'
+import { BaseVsCodeSettings } from '../shared/baseVsCodeSettings'
 import {
   configureCommonNpmPackages,
   configureImportSort,

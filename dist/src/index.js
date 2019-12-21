@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mrm_core_1 = require("mrm-core");
-const shared_1 = require("../shared");
 const baseVsCodeExtensions_1 = require("../shared/baseVsCodeExtensions");
+const baseVsCodeSettings_1 = require("../shared/baseVsCodeSettings");
 const commonTasks_1 = require("../shared/commonTasks");
 const helpers_1 = require("../shared/helpers");
 function task() {
@@ -53,7 +53,7 @@ function configureTypeScript() {
     })
         .save();
     mrm_core_1.makeDirs(['src', 'dist']);
-    if (!mrm_core_1.lines('src/index.ts').exists) {
+    if (!mrm_core_1.lines('src/index.ts').exists()) {
         mrm_core_1.lines('src/index.ts', [
             "export const message = 'Hello, world!'",
             'console.log(message)',
@@ -115,7 +115,7 @@ function configureJasmineAndNyc() {
         },
     })
         .save();
-    if (!mrm_core_1.lines('tests/index.spec.ts').exists) {
+    if (!mrm_core_1.lines('tests/index.spec.ts').exists()) {
         mrm_core_1.lines('tests/index.spec.ts', [
             "import { message } from '../src/index'",
             '',
@@ -187,7 +187,7 @@ function configureVsCodeForTypeScript() {
     })
         .save();
     mrm_core_1.json('.vscode/settings.json')
-        .merge(Object.assign(shared_1.BaseVsCodeSettings, {
+        .merge(Object.assign(baseVsCodeSettings_1.BaseVsCodeSettings, {
         'files.exclude': {
             '**/.git': true,
             '**/.DS_Store': true,

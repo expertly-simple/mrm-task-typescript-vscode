@@ -67,7 +67,7 @@ function configurePrettier() {
 }
 exports.configurePrettier = configurePrettier;
 function configurePRTemplate() {
-    if (!mrm_core_1.lines('pull_request_template.md').exists) {
+    if (!mrm_core_1.lines('pull_request_template.md').exists()) {
         mrm_core_1.lines('pull_request_template.md')
             .set([
             '# Feature/Change Description',
@@ -92,9 +92,9 @@ function configureInitEnv() {
     if (!mrm_core_1.lines('example.env').exists()) {
         mrm_core_1.lines('example.env')
             .set([
-            '/* Document required environment variables for .env file here',
-            '   Execute npm run init:env to generate a .env file from example',
-            '   Ensure .env file is included in .gitignore */',
+            '# Document required environment variables for .env file here',
+            '# Execute npm run init:env to generate a .env file from example',
+            '# Ensure .env file is included in .gitignore',
             'MY_VAR=defaultValue',
         ])
             .save();
