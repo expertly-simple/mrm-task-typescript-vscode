@@ -1,4 +1,4 @@
-import { install, json, lines, makeDirs, packageJson } from 'mrm-core'
+import { file, install, json, lines, makeDirs, packageJson } from 'mrm-core'
 
 import { BaseVsCodeSettings } from '../shared'
 import { BaseVsCodeExtensions } from '../shared/baseVsCodeExtensions'
@@ -28,49 +28,53 @@ function task() {
 function configureTypeScript() {
   install(['typescript', '@types/node'])
 
-  json('tsconfig.json').merge({
-    compilerOptions: {
-      target: 'es2015',
-      module: 'commonjs',
-      moduleResolution: 'node',
-      lib: ['es2015', 'es2016', 'es2017', 'es2018', 'es2019'],
-      typeRoots: ['node_modules/@types'],
-      resolveJsonModule: true,
-    },
-  })
+  json('tsconfig.json')
+    .merge({
+      compilerOptions: {
+        target: 'es2015',
+        module: 'commonjs',
+        moduleResolution: 'node',
+        lib: ['es2015', 'es2016', 'es2017', 'es2018', 'es2019'],
+        typeRoots: ['node_modules/@types'],
+        resolveJsonModule: true,
+      },
+    })
+    .save()
 
-  json('tsconfig.src.json').merge({
-    extends: './tsconfig.json',
-    compilerOptions: {
-      outDir: './dist',
-      strict: true,
-      noImplicitAny: true,
-      strictNullChecks: true,
-      noImplicitThis: true,
-      alwaysStrict: true,
+  json('tsconfig.src.json')
+    .merge({
+      extends: './tsconfig.json',
+      compilerOptions: {
+        outDir: './dist',
+        strict: true,
+        noImplicitAny: true,
+        strictNullChecks: true,
+        noImplicitThis: true,
+        alwaysStrict: true,
 
-      noUnusedLocals: true,
-      noUnusedParameters: true,
-      noImplicitReturns: true,
-      noFallthroughCasesInSwitch: true,
-      experimentalDecorators: true,
-      strictPropertyInitialization: false,
+        noUnusedLocals: true,
+        noUnusedParameters: true,
+        noImplicitReturns: true,
+        noFallthroughCasesInSwitch: true,
+        experimentalDecorators: true,
+        strictPropertyInitialization: false,
 
-      sourceMap: true,
-    },
-    include: ['./src'],
-  })
+        sourceMap: true,
+      },
+      include: ['./src'],
+    })
+    .save()
 
   makeDirs(['src', 'dist'])
 
-  if (!lines('./src/index.ts').exists) {
-    lines('./src/index.ts', [
+  if (!lines('src/index.ts').exists) {
+    lines('src/index.ts', [
       "export const message = 'Hello, world!'",
       'console.log(message)',
       "// Execute 'npm run build' to build your code",
       "// Execute 'npm start' to build and run your code",
       "// Execute 'npm test' to run your tests",
-    ])
+    ]).save()
   }
 }
 
@@ -96,40 +100,46 @@ function configureJasmineAndNyc() {
       'nyc ts-node node_modules/jasmine/bin/jasmine --config=./jasmine.json --cache=false',
   })
 
-  json('jasmine.json').merge({
-    spec_dir: 'tests',
-    spec_files: ['**/*[sS]pec.ts'],
-    stopSpecOnExpectationFailure: false,
-    random: true,
-  })
+  json('jasmine.json')
+    .merge({
+      spec_dir: 'tests',
+      spec_files: ['**/*[sS]pec.ts'],
+      stopSpecOnExpectationFailure: false,
+      random: true,
+    })
+    .save()
 
-  json('.nycrc').merge({
-    extends: '@istanbuljs/nyc-config-typescript',
-    all: true,
-    'check-coverage': true,
-    extension: ['.ts', '.tsx'],
-    exclude: ['**/*.d.ts', '**/tests', '**/coverage'],
-    reporter: ['lcov', 'text'],
-    branches: 90,
-    lines: 90,
-    functions: 90,
-    statements: 90,
-  })
+  json('.nycrc')
+    .merge({
+      extends: '@istanbuljs/nyc-config-typescript',
+      all: true,
+      'check-coverage': true,
+      extension: ['.ts', '.tsx'],
+      exclude: ['**/*.d.ts', '**/tests', '**/coverage'],
+      reporter: ['lcov', 'text'],
+      branches: 90,
+      lines: 90,
+      functions: 90,
+      statements: 90,
+    })
+    .save()
 
   makeDirs('tests')
-  json('./tests/tsconfig.spec.json').merge({
-    extends: '../tsconfig.json',
-    compilerOptions: {
-      declaration: false,
-      strict: false,
-      sourceMap: true,
-      noImplicitAny: false,
-      types: ['node', 'jasmine'],
-    },
-  })
+  json('tests/tsconfig.spec.json')
+    .merge({
+      extends: '../tsconfig.json',
+      compilerOptions: {
+        declaration: false,
+        strict: false,
+        sourceMap: true,
+        noImplicitAny: false,
+        types: ['node', 'jasmine'],
+      },
+    })
+    .save()
 
-  if (!lines('./tests/index.spec.ts').exists) {
-    lines('./tests/index.spec.ts', [
+  if (!lines('tests/index.spec.ts').exists) {
+    lines('tests/index.spec.ts', [
       "import { message } from '../src/index'",
       '',
       "describe('Index', () => {",
@@ -137,7 +147,7 @@ function configureJasmineAndNyc() {
       "    expect('Hello, world!').toEqual(message)",
       '  })',
       '})',
-    ])
+    ]).save()
   }
 }
 
@@ -163,37 +173,39 @@ function configureNpmScripts() {
 }
 
 function configureBaseTsLint() {
-  json('tslint.json').merge({
-    rules: {
-      'array-type': false,
-      'arrow-parens': false,
-      deprecation: {
-        severity: 'warn',
-      },
-      'import-blacklist': [true, 'rxjs/Rx'],
-      'interface-name': false,
-      'max-classes-per-file': false,
-      'member-access': false,
-      'member-ordering': [
-        true,
-        {
-          order: ['static-field', 'instance-field', 'static-method', 'instance-method'],
+  json('tslint.json')
+    .merge({
+      rules: {
+        'array-type': false,
+        'arrow-parens': false,
+        deprecation: {
+          severity: 'warn',
         },
-      ],
-      'no-consecutive-blank-lines': false,
-      'no-console': [true, 'debug', 'info', 'time', 'timeEnd', 'trace'],
-      'no-empty': false,
-      'no-inferrable-types': [true, 'ignore-params'],
-      'no-non-null-assertion': true,
-      'no-redundant-jsdoc': true,
-      'no-switch-case-fall-through': true,
-      'no-var-requires': false,
-      'object-literal-key-quotes': [true, 'as-needed'],
-      'object-literal-sort-keys': false,
-      'ordered-imports': false,
-      'trailing-comma': false,
-    },
-  })
+        'import-blacklist': [true, 'rxjs/Rx'],
+        'interface-name': false,
+        'max-classes-per-file': false,
+        'member-access': false,
+        'member-ordering': [
+          true,
+          {
+            order: ['static-field', 'instance-field', 'static-method', 'instance-method'],
+          },
+        ],
+        'no-consecutive-blank-lines': false,
+        'no-console': [true, 'debug', 'info', 'time', 'timeEnd', 'trace'],
+        'no-empty': false,
+        'no-inferrable-types': [true, 'ignore-params'],
+        'no-non-null-assertion': true,
+        'no-redundant-jsdoc': true,
+        'no-switch-case-fall-through': true,
+        'no-var-requires': false,
+        'object-literal-key-quotes': [true, 'as-needed'],
+        'object-literal-sort-keys': false,
+        'ordered-imports': false,
+        'trailing-comma': false,
+      },
+    })
+    .save()
   configureTsLint()
 }
 
