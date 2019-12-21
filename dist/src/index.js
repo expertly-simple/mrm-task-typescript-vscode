@@ -62,6 +62,9 @@ function configureTypeScript() {
             "// Execute 'npm test' to run your tests",
         ]).save();
     }
+    mrm_core_1.lines('.gitignore')
+        .set(['*.js', '*.js.map', 'declarations', '!specs.js', 'test_results'])
+        .save();
 }
 function configureJasmineAndNyc() {
     const jasminePackages = [
@@ -121,11 +124,14 @@ function configureJasmineAndNyc() {
             '',
             "describe('Index', () => {",
             "  it('should have the correct message', () => {",
-            "    expect('Hello, world!').toEqual(message)",
+            "    expect(message).toEqual('Hello, world!')",
             '  })',
             '})',
         ]).save();
     }
+    mrm_core_1.lines('.gitignore')
+        .set(['!specs.js', 'test_results'])
+        .save();
 }
 function configureNpmScripts() {
     mrm_core_1.install('env-cmd');
@@ -147,6 +153,7 @@ function configureNpmScripts() {
 function configureBaseTsLint() {
     mrm_core_1.json('tslint.json')
         .merge({
+        extends: ['tslint:recommended'],
         rules: {
             'array-type': false,
             'arrow-parens': false,

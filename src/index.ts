@@ -76,6 +76,10 @@ function configureTypeScript() {
       "// Execute 'npm test' to run your tests",
     ]).save()
   }
+
+  lines('.gitignore')
+    .set(['*.js', '*.js.map', 'declarations', '!specs.js', 'test_results'])
+    .save()
 }
 
 function configureJasmineAndNyc() {
@@ -144,11 +148,15 @@ function configureJasmineAndNyc() {
       '',
       "describe('Index', () => {",
       "  it('should have the correct message', () => {",
-      "    expect('Hello, world!').toEqual(message)",
+      "    expect(message).toEqual('Hello, world!')",
       '  })',
       '})',
     ]).save()
   }
+
+  lines('.gitignore')
+    .set(['!specs.js', 'test_results'])
+    .save()
 }
 
 function configureNpmScripts() {
@@ -175,6 +183,7 @@ function configureNpmScripts() {
 function configureBaseTsLint() {
   json('tslint.json')
     .merge({
+      extends: ['tslint:recommended'],
       rules: {
         'array-type': false,
         'arrow-parens': false,
