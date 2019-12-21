@@ -18,7 +18,7 @@ function setScript(pkg, name, script) {
 }
 exports.setScript = setScript;
 function setScripts(pkg, scripts) {
-    for (let [key, value] of Object.entries(scripts)) {
+    for (const [key, value] of Object.entries(scripts)) {
         pkg.setScript(key, value);
     }
     pkg.save();

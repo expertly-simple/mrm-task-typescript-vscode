@@ -63,7 +63,7 @@ function configureTypeScript() {
         ]).save();
     }
     mrm_core_1.lines('.gitignore')
-        .add(['*.js', '*.js.map', 'declarations', '!specs.js', 'test_results'])
+        .add(['*.js', '*.js.map', 'declarations', 'test_results'])
         .save();
 }
 function configureJasmineAndNyc() {
@@ -130,15 +130,15 @@ function configureJasmineAndNyc() {
         ]).save();
     }
     mrm_core_1.lines('.gitignore')
-        .add(['!specs.js', 'test_results'])
+        .add(['test_results'])
         .save();
 }
 function configureNpmScripts() {
     mrm_core_1.install('env-cmd');
     const pkg = mrm_core_1.packageJson();
     helpers_1.setScripts(pkg, {
-        style: 'import-sort -l "{lib,tests}/**/*.ts" && prettier --check "{lib,tests}/**/*.ts"',
-        'style:fix': 'import-sort --write "{lib,tests}/**/*.ts" && prettier --write "{lib,tests}/**/*.ts"',
+        style: 'import-sort -l "{src,tests}/**/*.ts" && prettier --check "{src,tests}/**/*.ts"',
+        'style:fix': 'import-sort --write "{src,tests}/**/*.ts" && prettier --write "{src,tests}/**/*.ts"',
         lint: 'tslint --config tslint.json --project .',
         'lint:fix': 'tslint --config tslint.json --fix --project .',
         prestart: 'npm run build',
