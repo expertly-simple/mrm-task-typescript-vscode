@@ -1,4 +1,4 @@
-import { file, install, json, lines, makeDirs, packageJson } from 'mrm-core'
+import { install, json, lines, makeDirs, packageJson } from 'mrm-core'
 
 import { BaseVsCodeSettings } from '../shared'
 import { BaseVsCodeExtensions } from '../shared/baseVsCodeExtensions'
