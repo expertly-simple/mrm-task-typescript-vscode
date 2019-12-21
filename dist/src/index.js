@@ -16,7 +16,6 @@ function task() {
     commonTasks_1.configureInitEnv();
     commonTasks_1.configurePRTemplate();
 }
-exports.task = task;
 function configureTypeScript() {
     mrm_core_1.install(['typescript', '@types/node']);
     mrm_core_1.json('tsconfig.json').merge({
@@ -227,4 +226,5 @@ function configureVsCodeForTypeScript() {
         .save();
 }
 task.description = "Configures VS Code for TypeScript projects";
+module.exports = task;
 //# sourceMappingURL=index.js.map
