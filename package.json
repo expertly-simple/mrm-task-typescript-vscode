@@ -8,8 +8,7 @@
     "mrmSharedUrl": "https://github.com/expertly-simple/mrm-shared.git"
   },
   "scripts": {
-    "pretest": "npm run build && npm run build:test",
-    "test": "ts-node node_modules/jasmine/bin/jasmine --config=./jasmine.json",
+    "test": "echo 'yay'",
     "shared:clean": "cross-conf-env rimraf shared && git rm -r --cached shared",
     "shared:init": "cross-conf-env git submodule add $npm_package_config_mrmSharedUrl shared",
     "postshared:init": "git submodule status shared",
