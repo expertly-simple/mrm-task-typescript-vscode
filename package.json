@@ -2,8 +2,8 @@
   "name": "mrm-task-typescript-vscode",
   "version": "1.0.0",
   "description": "MRM task to configure VS Code and TypeScript projects with an optimized development experience",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "config": {
     "mrmSharedUrl": "https://github.com/expertly-simple/mrm-shared.git"
   },
