@@ -67,7 +67,7 @@ function configureTypeScript() {
 
   makeDirs(['src', 'dist'])
 
-  if (!lines('src/index.ts').exists) {
+  if (!lines('src/index.ts').exists()) {
     lines('src/index.ts', [
       "export const message = 'Hello, world!'",
       'console.log(message)',
@@ -138,7 +138,7 @@ function configureJasmineAndNyc() {
     })
     .save()
 
-  if (!lines('tests/index.spec.ts').exists) {
+  if (!lines('tests/index.spec.ts').exists()) {
     lines('tests/index.spec.ts', [
       "import { message } from '../src/index'",
       '',
