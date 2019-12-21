@@ -63,7 +63,7 @@ function configureTypeScript() {
         ]).save();
     }
     mrm_core_1.lines('.gitignore')
-        .set(['*.js', '*.js.map', 'declarations', '!specs.js', 'test_results'])
+        .add(['*.js', '*.js.map', 'declarations', '!specs.js', 'test_results'])
         .save();
 }
 function configureJasmineAndNyc() {
@@ -130,7 +130,7 @@ function configureJasmineAndNyc() {
         ]).save();
     }
     mrm_core_1.lines('.gitignore')
-        .set(['!specs.js', 'test_results'])
+        .add(['!specs.js', 'test_results'])
         .save();
 }
 function configureNpmScripts() {

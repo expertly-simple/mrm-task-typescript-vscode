@@ -103,7 +103,7 @@ function configureInitEnv() {
         'init:env': 'init-dev-env generate-dot-env example.env -f',
     });
     mrm_core_1.lines('.gitignore')
-        .set(['.env'])
+        .add(['.env'])
         .save();
 }
 exports.configureInitEnv = configureInitEnv;

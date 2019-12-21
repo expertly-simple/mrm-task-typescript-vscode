@@ -78,7 +78,7 @@ function configureTypeScript() {
   }
 
   lines('.gitignore')
-    .set(['*.js', '*.js.map', 'declarations', '!specs.js', 'test_results'])
+    .add(['*.js', '*.js.map', 'declarations', '!specs.js', 'test_results'])
     .save()
 }
 
@@ -155,7 +155,7 @@ function configureJasmineAndNyc() {
   }
 
   lines('.gitignore')
-    .set(['!specs.js', 'test_results'])
+    .add(['!specs.js', 'test_results'])
     .save()
 }
 
