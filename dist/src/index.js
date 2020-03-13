@@ -78,6 +78,7 @@ function configureJasmineAndNyc() {
     mrm_core_1.install(jasminePackages.concat(nycPackages));
     const pkg = mrm_core_1.packageJson();
     helpers_1.setScripts(pkg, {
+        'build:test': 'tsc -p tests/tsconfig.spec.json',
         pretest: 'npm run build && npm run build:test',
         test: 'ts-node node_modules/jasmine/bin/jasmine --config=./jasmine.json',
         'test:ci': 'ts-node ./node_modules/jasmine-xml-reporter/bin/jasmine.js --config=./jasmine.json --junitreport --output=test_results/',
@@ -145,7 +146,6 @@ function configureNpmScripts() {
         start: 'env-cmd node dist/index.js',
         prebuild: 'rimraf dist',
         build: 'tsc -p tsconfig.src.json',
-        'build:test': 'tsc -p tests/tsconfig.spec.json',
         prepublishOnly: 'npm run test',
         prepare: 'npm run build',
     });
