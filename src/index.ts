@@ -102,7 +102,7 @@ function configureJasmineAndNyc() {
     'test:ci':
       'ts-node ./node_modules/jasmine-xml-reporter/bin/jasmine.js --config=./jasmine.json --junitreport --output=test_results/',
     'test:nyc':
-      'nyc ts-node node_modules/jasmine/bin/jasmine --config=./jasmine.json --cache=false',
+      'nyc node_modules/ts-node/dist/bin.js node_modules/jasmine/bin/jasmine --config=./jasmine.json --cache=false',
   })
 
   json('jasmine.json')
